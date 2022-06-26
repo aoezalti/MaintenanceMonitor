@@ -5,9 +5,7 @@ import com.example.maintenancemonitor.service.MonitorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Optional;
-
 
 @CrossOrigin
 @RestController
@@ -20,5 +18,10 @@ public class MaintenanceMonitorController {
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Monitor setMonitor(@RequestParam boolean state, @RequestParam Optional<String> message) {
         return monitorService.setMonitor(state, message.orElse("-"));
+    }
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public Monitor getMessages() {
+        return monitorService.getMonitorData();
     }
 }
